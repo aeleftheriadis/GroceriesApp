@@ -3,11 +3,12 @@ import apisauce from 'apisauce'
 
 // our "constructor"
 const create = (
-  baseURL = 'https://api.development.convibo.co.uk/api/v1/',
-  headers: {
-    "Authorization": "Bearer a716b8649c7b16873ae76d9b0c38271a86b58c447fe0c8dfa709ba6f1e3565dc",
-    "Content-Type": "application/json"
-  }
+  baseURL = 'https://api.github.com/'
+  // baseURL = 'https://api.development.convibo.co.uk/api/v1/',
+  // headers: {
+  //   "Authorization": "Bearer a716b8649c7b16873ae76d9b0c38271a86b58c447fe0c8dfa709ba6f1e3565dc",
+  //   "Content-Type": "application/json"
+  // }
 ) => {
   // ------
   // STEP 1
@@ -41,7 +42,9 @@ const create = (
   // way at this level.
   //
   const getProducts = (supplier) => api.get('products', {supplier: supplier, collection: 'true'})
-
+  const getRoot = () => api.get('')
+  const getRate = () => api.get('rate_limit')
+  const getUser = (username) => api.get('search/users', {q: username})
   // ------
   // STEP 3
   // ------
@@ -56,7 +59,10 @@ const create = (
   //
   return {
     // a list of the API functions from step 2
-    getProducts
+    getProducts,
+    getRoot,
+    getRate,
+    getUser
   }
 }
 

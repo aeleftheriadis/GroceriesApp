@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import ExamplesRegistry from '../../../App/Services/ExamplesRegistry'
 import {
   Button
@@ -11,7 +11,7 @@ import {
 ExamplesRegistry.addPluginExample('Elements', () =>
   <View>
     <Button
-      title="RN Elements Button"
+      title='RN Elements Button'
     />
   </View>
 )

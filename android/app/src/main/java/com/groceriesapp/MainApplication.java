@@ -30,7 +30,7 @@ public class MainApplication extends Application implements ReactApplication {
             new VectorIconsPackage(),
             new RNFetchBlobPackage(),
             new ReactNativeConfigPackage(),
-            new ReactNativeI18n()
+            new RNI18nPackage()
       );
     }
 

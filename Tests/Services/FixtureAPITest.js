@@ -12,28 +12,19 @@ test('All fixtures map to actual API', () => {
   expect(R.equals(fixtureKeys, intersection)).toBe(true)
 })
 
-test('FixtureAPI getRate returns the right file', () => {
-  const expectedFile = require('../../App/Fixtures/rateLimit.json')
+test('FixtureAPI getProducts returns the right file for tesco', () => {
+  const expectedFile = require('../../App/Fixtures/tesco.json')
 
-  expect(FixtureAPI.getRate()).toEqual({
+  expect(FixtureAPI.getProducts('tesco')).toEqual({
     ok: true,
     data: expectedFile
   })
 })
 
-test('FixtureAPI getUser returns the right file for gantman', () => {
-  const expectedFile = require('../../App/Fixtures/gantman.json')
+test('FixtureAPI getProducts returns the right file for waitrose as default', () => {
+  const expectedFile = require('../../App/Fixtures/waitrose.json')
 
-  expect(FixtureAPI.getUser('GantMan')).toEqual({
-    ok: true,
-    data: expectedFile
-  })
-})
-
-test('FixtureAPI getUser returns the right file for skellock as default', () => {
-  const expectedFile = require('../../App/Fixtures/skellock.json')
-
-  expect(FixtureAPI.getUser('Whatever')).toEqual({
+  expect(FixtureAPI.getProducts('waitrose')).toEqual({
     ok: true,
     data: expectedFile
   })
