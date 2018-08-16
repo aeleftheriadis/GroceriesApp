@@ -1,13 +1,11 @@
 import React from 'react'
 import { View, Text, FlatList } from 'react-native'
-import { connect } from 'react-redux'
-
 // More info here: https://facebook.github.io/react-native/docs/flatlist.html
 
 // Styles
 import styles from './Styles/CategoryStyle'
 
-class Category extends React.PureComponent {
+export default class Category extends React.PureComponent {
   /* ***********************************************************
   * STEP 1
   * This is an array of objects with the properties you desire
@@ -102,16 +100,3 @@ class Category extends React.PureComponent {
     )
   }
 }
-
-const mapStateToProps = (state) => {
-  return {
-    // ...redux state to props here
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Category)

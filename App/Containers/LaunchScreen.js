@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, Image, View, Button } from 'react-native'
+import { ScrollView, Text, Image, View, Button, Platform, Animated } from 'react-native'
 import { Images, Colors } from '../Themes'
 import { connect } from 'react-redux'
 import ProductsActions from '../Redux/ProductsRedux'
@@ -10,6 +10,10 @@ import styles from './Styles/LaunchScreenStyles'
 
 import RNPickerSelect from 'react-native-picker-select'
 
+const HEADER_MAX_HEIGHT = 300
+const HEADER_MIN_HEIGHT = Platform.OS === 'ios' ? 60 : 73
+const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT
+
 class LaunchScreen extends Component {
   static navigationOptions = {
     title: 'Home',
@@ -17,25 +21,90 @@ class LaunchScreen extends Component {
     tabBarIcon: ({ tintColor }) => (
       <CustomIcon name='shop' color={tintColor} />
     ),
-    headerRight: <CustomIcon name='basket' color={Colors.green} />
+    headerRight: <CustomIcon name='basket' color={Colors.green} />,
+    headerStyle: {
+      backgroundColor: 'transparent',
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      borderBottomWidth: 0
+    }
   };
   isAttempting = false
+  _animatedValue = new Animated.Value(0);
   state= {
     payload: [],
-    supplier: 'tesco'
+    supplier: 'tesco',
+    scrollY: new Animated.Value(
+      // iOS has negative initial scroll value because content inset...
+      Platform.OS === 'ios' ? -HEADER_MAX_HEIGHT : 0
+    ),
+    refreshing: false
+
   }
   componentDidMount () {
     this.isAttempting = true
     this.props.getProducts(this.state.supplier)
+    this.props.navigation.setParams({animatedValue: this._animatedValue.interpolate({
+      inputRange: [0, HEADER_SCROLL_DISTANCE],
+      outputRange: [HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT],
+      extrapolate: 'clamp'
+    })
+    })
   }
+
+  componentWillReceiveProps (newProps) {
+    this.forceUpdate()
+    // Did the login attempt complete?
+    if (this.isAttempting && !newProps.fetching) {
+      console.tron.log(newProps.payload)
+      this.setState({payload: newProps.payload})
+    }
+  }
+  _renderScrollViewContent () {
+    return (
+      <View style={{paddingTop: Platform.OS !== 'ios' ? HEADER_MAX_HEIGHT : 0}}>
+        {this.state.payload.map((_, i) => (
+          <View key={i} style={{
+            height: 80,
+            backgroundColor: '#D3D3D3',
+            alignItems: 'center',
+            justifyContent: 'center',
+            top: -100 - HEADER_MIN_HEIGHT
+          }}>
+            <Text>{i}</Text>
+          </View>
+        ))}
+      </View>
+    )
+  }
+
   render () {
     const { fetching } = this.props
     const { payload } = this.state
+    const scrollY = Animated.add(
+      this.state.scrollY,
+      Platform.OS === 'ios' ? HEADER_MAX_HEIGHT : 0
+    )
+    const imageOpacity = scrollY.interpolate({
+      inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
+      outputRange: [1, 1, 0],
+      extrapolate: 'clamp'
+    })
     return (
       <View style={styles.mainContainer}>
-        <Image source={Images.background} style={styles.backgroundImage} resizeMode='cover' />
-        <View style={styles.overlay} />
-        <ScrollView style={styles.container}>
+        <Animated.Image source={Images.background} style={[styles.backgroundImage, {top: (!this.state.params ? 0 : this.state.params.animatedValue), opacity: imageOpacity, height: HEADER_MAX_HEIGHT}]} resizeMode='cover' />
+        <Animated.View style={[styles.overlay, {opacity: imageOpacity}]} />
+        <Animated.ScrollView style={[styles.container, {top: HEADER_MIN_HEIGHT}]}
+          scrollEventThrottle={1}
+          overScrollMode='never'
+          onScroll={Animated.event(
+            [{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }],
+            { useNativeDriver: true }
+          )}
+        >
+          {this._renderScrollViewContent()}
           {/* {fetching
           ? <View style={styles.progressContainer}>
             <Progress.CircleSnail color={['#1b4182']} />
@@ -52,7 +121,7 @@ class LaunchScreen extends Component {
         })
         }
           </View> */}
-          <View style={styles.centered}>
+          {/* <View style={styles.centered}>
             <Image source={Images.launch} style={styles.logo} />
 
             <Button
@@ -66,9 +135,9 @@ class LaunchScreen extends Component {
             <Text style={styles.sectionText}>
               This probably isn't what your app is going to look like. Unless your designer handed you this screen and, in that case, congrats! You're ready to ship. For everyone else, this is where you'll see a live preview of your fully functioning app using Ignite.
             </Text>
-          </View>
+          </View> */}
 
-        </ScrollView>
+        </Animated.ScrollView>
       </View>
     )
   }
