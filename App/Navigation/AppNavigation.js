@@ -1,6 +1,4 @@
-import { TabNavigator, TabBarBottom } from 'react-navigation'
-import Products from '../Containers/Products'
-import Category from '../Containers/Category'
+import { TabNavigator, TabBarBottom, StackNavigator } from 'react-navigation'
 import MoreScreen from '../Containers/MoreScreen'
 import MyListsScreen from '../Containers/MyListsScreen'
 import BrowseScreen from '../Containers/BrowseScreen'
@@ -15,20 +13,26 @@ import icoMoonConfig from '../Lib/selection.json'
 
 const Icon = createIconSetFromIcoMoon(icoMoonConfig)
 
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import { Metrics, Colors } from '../Themes'
 
-import { Metrics } from '../Themes'
+const HomeStack = StackNavigator({
+  LaunchScreen: { screen: LaunchScreen },
+  ProductsScreen: { screen: ProductsScreen }
+})
 
 // Manifest of possible screens
 const PrimaryNav = TabNavigator({
   // Products: { screen: Products },
   // Category: { screen: Category },
-  // MoreScreen: { screen: MoreScreen },
-  // MyListsScreen: { screen: MyListsScreen },
-  // BrowseScreen: { screen: BrowseScreen },
-  // SearchScreen: { screen: SearchScreen },
+  //
+
+  //
   // ProductsScreen: { screen: ProductsScreen },
-  LaunchScreen: { screen: LaunchScreen }
+  LaunchScreen: { screen: HomeStack },
+  SearchScreen: { screen: SearchScreen },
+  BrowseScreen: { screen: BrowseScreen },
+  MyListsScreen: { screen: MyListsScreen },
+  MoreScreen: { screen: MoreScreen }
 },
 {
   // navigationOptions: ({ navigation }) => ({
@@ -42,30 +46,32 @@ const PrimaryNav = TabNavigator({
   // }),
   tabBarOptions: {
     showIcon: true,
-    showLabel: false,
-    style: {
-      backgroundColor: 'white',
-      borderTopColor: 'white',
-      borderTopWidth: 1,
-      height: Metrics.screenHeight * 0.08
-    },
-    tabStyle: {
-      width: Metrics.screenWidth * 0.33333333333333333333333333333333333333333,
-      height: Metrics.screenWidth * 0.08
-    },
-    indicatorStyle: {
-      backgroundColor: 'white',
-      width: 0,
-      height: 0,
-      padding: 0,
-      margin: 0
-    }
+    showLabel: true,
+    activeTintColor: Colors.green,
+    inactiveTintColor: Colors.grey
+    // style: {
+    //   backgroundColor: 'white',
+    //   borderTopColor: 'white',
+    //   borderTopWidth: 1,
+    //   height: Metrics.screenHeight * 0.08
+    // },
+    // tabStyle: {
+    //   width: Metrics.screenWidth * 0.33333333333333333333333333333333333333333,
+    //   height: Metrics.screenWidth * 0.08
+    // },
+    // indicatorStyle: {
+    //   backgroundColor: 'white',
+    //   width: 0,
+    //   height: 0,
+    //   padding: 0,
+    //   margin: 0
+    // }
   },
   initialRouteName: 'LaunchScreen',
   abBarComponent: TabBarBottom,
   tabBarPosition: 'bottom',
-  animationEnabled: false,
-  swipeEnabled: false
+  animationEnabled: true,
+  swipeEnabled: true
 }
 
 // {

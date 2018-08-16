@@ -1,19 +1,23 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, Image, View } from 'react-native'
+import { ScrollView, Text, Image, View, Button } from 'react-native'
 import { Images, Colors } from '../Themes'
 import { connect } from 'react-redux'
 import ProductsActions from '../Redux/ProductsRedux'
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import CustomIcon from '../Components/CustomIcon'
 
 // Styles
 import styles from './Styles/LaunchScreenStyles'
 
+import RNPickerSelect from 'react-native-picker-select'
+
 class LaunchScreen extends Component {
   static navigationOptions = {
-    title: `Home`,
-    tabBarIcon: () => (
-      <Ionicons name='ios-information-circle' size={25} color='grey' />
-    )
+    title: 'Home',
+    tabBarLabel: 'Home',
+    tabBarIcon: ({ tintColor }) => (
+      <CustomIcon name='shop' color={tintColor} />
+    ),
+    headerRight: <CustomIcon name='basket' color={Colors.green} />
   };
   isAttempting = false
   state= {
@@ -25,13 +29,36 @@ class LaunchScreen extends Component {
     this.props.getProducts(this.state.supplier)
   }
   render () {
+    const { fetching } = this.props
+    const { payload } = this.state
     return (
       <View style={styles.mainContainer}>
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='cover' />
         <View style={styles.overlay} />
         <ScrollView style={styles.container}>
+          {/* {fetching
+          ? <View style={styles.progressContainer}>
+            <Progress.CircleSnail color={['#1b4182']} />
+          </View> : null}
+        { payload.map((u, i) => {
+          return (
+            <AnnouncementCard
+              key={i}
+              announcement={u}
+              onPress={() => this.onPress(u)}
+              chars={80}
+            />
+          )
+        })
+        }
+          </View> */}
           <View style={styles.centered}>
             <Image source={Images.launch} style={styles.logo} />
+
+            <Button
+              title='Go to Details'
+              onPress={() => this.props.navigation.navigate('ProductsScreen')}
+            />
           </View>
 
           <View style={styles.section} >

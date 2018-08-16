@@ -1,32 +1,23 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, KeyboardAvoidingView } from 'react-native'
-import { connect } from 'react-redux'
-// Add Actions - replace 'Your' with whatever your reducer is called :)
-// import YourActions from '../Redux/YourRedux'
+import { ScrollView, KeyboardAvoidingView } from 'react-native'
+import CustomIcon from '../Components/CustomIcon'
 
 // Styles
 import styles from './Styles/MoreScreenStyle'
 
-class MoreScreen extends Component {
+export default class MoreScreen extends Component {
+  static navigationOptions = {
+    title: 'more',
+    tabBarLabel: 'more',
+    tabBarIcon: ({ tintColor }) => (
+      <CustomIcon name='menu' color={tintColor} />
+    )
+  };
   render () {
     return (
       <ScrollView style={styles.container}>
-        <KeyboardAvoidingView behavior='position'>
-          <Text>MoreScreen</Text>
-        </KeyboardAvoidingView>
+        <KeyboardAvoidingView behavior='position' />
       </ScrollView>
     )
   }
 }
-
-const mapStateToProps = (state) => {
-  return {
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(MoreScreen)

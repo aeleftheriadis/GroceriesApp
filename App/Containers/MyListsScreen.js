@@ -1,32 +1,22 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, KeyboardAvoidingView } from 'react-native'
-import { connect } from 'react-redux'
-// Add Actions - replace 'Your' with whatever your reducer is called :)
-// import YourActions from '../Redux/YourRedux'
-
+import { ScrollView, KeyboardAvoidingView } from 'react-native'
+import CustomIcon from '../Components/CustomIcon'
 // Styles
 import styles from './Styles/MyListsScreenStyle'
 
-class MyListsScreen extends Component {
+export default class MyListsScreen extends Component {
+  static navigationOptions = {
+    title: 'My lists',
+    tabBarLabel: 'My lists',
+    tabBarIcon: ({ tintColor }) => (
+      <CustomIcon name='list' color={tintColor} />
+    )
+  };
   render () {
     return (
       <ScrollView style={styles.container}>
-        <KeyboardAvoidingView behavior='position'>
-          <Text>MyListsScreen</Text>
-        </KeyboardAvoidingView>
+        <KeyboardAvoidingView behavior='position' />
       </ScrollView>
     )
   }
 }
-
-const mapStateToProps = (state) => {
-  return {
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(MyListsScreen)

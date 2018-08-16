@@ -1,32 +1,23 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, KeyboardAvoidingView } from 'react-native'
-import { connect } from 'react-redux'
-// Add Actions - replace 'Your' with whatever your reducer is called :)
-// import YourActions from '../Redux/YourRedux'
+import { ScrollView, KeyboardAvoidingView } from 'react-native'
+import CustomIcon from '../Components/CustomIcon'
 
 // Styles
 import styles from './Styles/SearchScreenStyle'
 
-class SearchScreen extends Component {
+export default class SearchScreen extends Component {
+  static navigationOptions = {
+    title: 'Search',
+    tabBarLabel: 'Search',
+    tabBarIcon: ({ tintColor }) => (
+      <CustomIcon name='search' color={tintColor} />
+    )
+  };
   render () {
     return (
       <ScrollView style={styles.container}>
-        <KeyboardAvoidingView behavior='position'>
-          <Text>SearchScreen</Text>
-        </KeyboardAvoidingView>
+        <KeyboardAvoidingView behavior='position' />
       </ScrollView>
     )
   }
 }
-
-const mapStateToProps = (state) => {
-  return {
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(SearchScreen)
