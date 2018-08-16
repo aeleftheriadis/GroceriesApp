@@ -3,12 +3,8 @@ import apisauce from 'apisauce'
 
 // our "constructor"
 const create = (
-  baseURL = 'https://api.github.com/'
-  // baseURL = 'https://api.development.convibo.co.uk/api/v1/',
-  // headers: {
-  //   "Authorization": "Bearer a716b8649c7b16873ae76d9b0c38271a86b58c447fe0c8dfa709ba6f1e3565dc",
-  //   "Content-Type": "application/json"
-  // }
+  // baseURL = 'https://api.github.com/'
+  baseURL = 'https://api.development.convibo.co.uk/api/v1/'
 ) => {
   // ------
   // STEP 1
@@ -21,7 +17,8 @@ const create = (
     baseURL,
     // here are some default headers
     headers: {
-      'Cache-Control': 'no-cache'
+      'Authorization': 'Bearer a716b8649c7b16873ae76d9b0c38271a86b58c447fe0c8dfa709ba6f1e3565dc',
+      'Content-Type': 'application/json'
     },
     // 10 second timeout...
     timeout: 10000
