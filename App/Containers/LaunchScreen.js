@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, Image, View, Button, Platform, Animated, Picker } from 'react-native'
+import { Text, View, Platform, Animated, Picker } from 'react-native'
 import { Images, Colors } from '../Themes'
 import { connect } from 'react-redux'
 import ProductsActions from '../Redux/ProductsRedux'
 import CustomIcon from '../Components/CustomIcon'
+import Category from './Category'
 
 // Styles
 import styles from './Styles/LaunchScreenStyles'
-
-import RNPickerSelect from 'react-native-picker-select'
 
 const HEADER_MAX_HEIGHT = 300
 const HEADER_MIN_HEIGHT = Platform.OS === 'ios' ? 60 : 73
@@ -80,19 +79,11 @@ class LaunchScreen extends Component {
       this.setState({payload: newProps.payload})
     }
   }
-  _renderScrollViewContent () {
+  renderScrollViewContent () {
     return (
       <View style={{paddingTop: Platform.OS !== 'ios' ? HEADER_MAX_HEIGHT : 0}}>
-        {this.state.payload.map((_, i) => (
-          <View key={i} style={{
-            height: 80,
-            backgroundColor: '#D3D3D3',
-            alignItems: 'center',
-            justifyContent: 'center',
-            top: -HEADER_MIN_HEIGHT
-          }}>
-            <Text>{i}</Text>
-          </View>
+        {this.state.payload.map((u, i) => (
+          <Category key={i} data={u} navigation={this.props.navigation} />
         ))}
       </View>
     )
@@ -120,7 +111,7 @@ class LaunchScreen extends Component {
             { useNativeDriver: true }
           )}
         >
-          {this._renderScrollViewContent()}
+          {this.renderScrollViewContent()}
           {/* {fetching
           ? <View style={styles.progressContainer}>
             <Progress.CircleSnail color={['#1b4182']} />

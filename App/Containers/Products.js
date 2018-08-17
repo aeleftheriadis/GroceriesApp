@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, FlatList } from 'react-native'
+import { View, Text, FlatList, Image } from 'react-native'
 import { connect } from 'react-redux'
 
 // More info here: https://facebook.github.io/react-native/docs/flatlist.html
@@ -8,23 +8,6 @@ import { connect } from 'react-redux'
 import styles from './Styles/ProductsStyle'
 
 class Products extends React.PureComponent {
-  /* ***********************************************************
-  * STEP 1
-  * This is an array of objects with the properties you desire
-  * Usually this should come from Redux mapStateToProps
-  *************************************************************/
-  state = {
-    dataObjects: [
-      {title: 'First Title', description: 'First Description'},
-      {title: 'Second Title', description: 'Second Description'},
-      {title: 'Third Title', description: 'Third Description'},
-      {title: 'Fourth Title', description: 'Fourth Description'},
-      {title: 'Fifth Title', description: 'Fifth Description'},
-      {title: 'Sixth Title', description: 'Sixth Description'},
-      {title: 'Seventh Title', description: 'Seventh Description'}
-    ]
-  }
-
   /* ***********************************************************
   * STEP 2
   * `renderRow` function. How each cell/row should be rendered
@@ -36,8 +19,9 @@ class Products extends React.PureComponent {
   renderRow ({item}) {
     return (
       <View style={styles.row}>
-        <Text style={styles.boldLabel}>{item.title}</Text>
-        <Text style={styles.label}>{item.description}</Text>
+        <Text style={styles.boldLabel}>{item.name}</Text>
+        <Text style={styles.label}>{item.price}</Text>
+        <Image source={{uri: item.primary_image_url}} style={{width: 50, height: 50}} />
       </View>
     )
   }
@@ -50,10 +34,6 @@ class Products extends React.PureComponent {
   // Render a header?
   renderHeader = () =>
     <Text style={[styles.label, styles.sectionHeader]}> - Header - </Text>
-
-  // Render a footer?
-  renderFooter = () =>
-    <Text style={[styles.label, styles.sectionHeader]}> - Footer - </Text>
 
   // Show this when data is empty
   renderEmpty = () =>
@@ -89,13 +69,12 @@ class Products extends React.PureComponent {
       <View style={styles.container}>
         <FlatList
           contentContainerStyle={styles.listContent}
-          data={this.state.dataObjects}
+          data={!this.props.data ? null : this.props.data.products}
           renderItem={this.renderRow}
           numColumns={2}
           keyExtractor={this.keyExtractor}
           initialNumToRender={this.oneScreensWorth}
           ListHeaderComponent={this.renderHeader}
-          ListFooterComponent={this.renderFooter}
           ListEmptyComponent={this.renderEmpty}
           ItemSeparatorComponent={this.renderSeparator}
         />
