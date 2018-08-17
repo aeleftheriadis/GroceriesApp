@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, Image, View, Button, Platform, Animated } from 'react-native'
+import { ScrollView, Text, Image, View, Button, Platform, Animated, Picker } from 'react-native'
 import { Images, Colors } from '../Themes'
 import { connect } from 'react-redux'
 import ProductsActions from '../Redux/ProductsRedux'
@@ -15,20 +15,24 @@ const HEADER_MIN_HEIGHT = Platform.OS === 'ios' ? 60 : 73
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT
 
 class LaunchScreen extends Component {
-  static navigationOptions = {
-    title: 'Home',
-    tabBarLabel: 'Home',
-    tabBarIcon: ({ tintColor }) => (
-      <CustomIcon name='shop' color={tintColor} />
-    ),
-    headerRight: <CustomIcon name='basket' color={Colors.green} />,
-    headerStyle: {
-      backgroundColor: 'transparent',
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      right: 0,
-      borderBottomWidth: 0
+  static navigationOptions = ({navigation}) => {
+    const {params = {}} = navigation.state
+    return {
+      title: 'Home',
+      tabBarLabel: 'Home',
+      tabBarIcon: ({ tintColor }) => (
+        <CustomIcon name='shop' color={tintColor} />
+      ),
+      headerRight: <CustomIcon name='basket' color={Colors.green} />,
+      headerStyle: styles.transparentHeader,
+      headerTitle: <Picker
+        selectedValue={params.selectedSupplier}
+        style={{ height: 50, width: 150 }}
+        onValueChange={(itemValue, itemIndex) => params.handlePickerChange(itemValue)}
+        mode='dropdown'>
+        <Picker.Item label='Tesco' value='tesco' />
+        <Picker.Item label='Waitrose' value='waitrose' />
+      </Picker>
     }
   };
   isAttempting = false
@@ -46,16 +50,30 @@ class LaunchScreen extends Component {
   componentDidMount () {
     this.isAttempting = true
     this.props.getProducts(this.state.supplier)
-    this.props.navigation.setParams({animatedValue: this._animatedValue.interpolate({
-      inputRange: [0, HEADER_SCROLL_DISTANCE],
-      outputRange: [HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT],
-      extrapolate: 'clamp'
+    this.props.navigation.setParams({
+      animatedValue: this._animatedValue.interpolate({
+        inputRange: [0, HEADER_SCROLL_DISTANCE],
+        outputRange: [HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT],
+        extrapolate: 'clamp'
+      }),
+      handlePickerChange: this.pickerChange,
+      selectedSupplier: this.state.supplier
     })
+  }
+
+  pickerChange = (itemValue) => {
+    console.tron.log(itemValue)
+    this.props.getProducts(itemValue)
+    this.setState({
+      supplier: itemValue
+    })
+    this.props.navigation.setParams({
+      selectedSupplier: itemValue
     })
   }
 
   componentWillReceiveProps (newProps) {
-    this.forceUpdate()
+    // this.forceUpdate()
     // Did the login attempt complete?
     if (this.isAttempting && !newProps.fetching) {
       console.tron.log(newProps.payload)
@@ -71,7 +89,7 @@ class LaunchScreen extends Component {
             backgroundColor: '#D3D3D3',
             alignItems: 'center',
             justifyContent: 'center',
-            top: -100 - HEADER_MIN_HEIGHT
+            top: -HEADER_MIN_HEIGHT
           }}>
             <Text>{i}</Text>
           </View>
@@ -95,10 +113,8 @@ class LaunchScreen extends Component {
     return (
       <View style={styles.mainContainer}>
         <Animated.Image source={Images.background} style={[styles.backgroundImage, {top: (!this.state.params ? 0 : this.state.params.animatedValue), opacity: imageOpacity, height: HEADER_MAX_HEIGHT}]} resizeMode='cover' />
-        <Animated.View style={[styles.overlay, {opacity: imageOpacity}]} />
         <Animated.ScrollView style={[styles.container, {top: HEADER_MIN_HEIGHT}]}
-          scrollEventThrottle={1}
-          overScrollMode='never'
+          scrollEventThrottle={16}
           onScroll={Animated.event(
             [{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }],
             { useNativeDriver: true }
