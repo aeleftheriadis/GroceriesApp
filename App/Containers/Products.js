@@ -45,7 +45,7 @@ class Products extends React.PureComponent {
   // The default function if no Key is provided is index
   // an identifiable key is important if you plan on
   // item reordering.  Otherwise index is fine
-  keyExtractor = (item, index) => index
+  keyExtractor = (item, index) => item.id.toString()
 
   // How many items should be kept im memory as we scroll?
   oneScreensWorth = 20

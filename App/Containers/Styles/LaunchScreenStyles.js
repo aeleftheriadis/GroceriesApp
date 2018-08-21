@@ -14,24 +14,6 @@ export default StyleSheet.create({
     right: 0,
     borderBottomWidth: 0
   },
-  inputIOS: {
-    // ...Fonts.style.regular,
-    // marginTop: Metrics.baseMargin,
-    // backgroundColor: Colors.white,
-    // paddingHorizontal: Metrics.baseMargin,
-    height: 60,
-    color: Colors.white,
-    flex: 1
-  },
-  inputAndroid: {
-    ...Fonts.style.regular,
-    // marginTop: Metrics.baseMargin,
-    // backgroundColor: Colors.white,
-    // paddingHorizontal: Metrics.baseMargin,
-    height: 60,
-    color: Colors.white,
-    flex: 1
-  },
   logo: {
     marginTop: Metrics.doubleSection,
     height: Metrics.images.logo,

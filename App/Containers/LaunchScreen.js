@@ -22,6 +22,7 @@ class LaunchScreen extends Component {
       tabBarIcon: ({ tintColor }) => (
         <CustomIcon name='shop' color={tintColor} />
       ),
+      headerLeft: <View />,
       headerRight: <CustomIcon name='basket' color={Colors.green} />,
       headerStyle: styles.transparentHeader,
       headerTitle: <Picker
@@ -35,7 +36,7 @@ class LaunchScreen extends Component {
     }
   };
   isAttempting = false
-  _animatedValue = new Animated.Value(0);
+  animatedValue = new Animated.Value(0);
   state= {
     payload: [],
     supplier: 'tesco',
@@ -50,7 +51,7 @@ class LaunchScreen extends Component {
     this.isAttempting = true
     this.props.getProducts(this.state.supplier)
     this.props.navigation.setParams({
-      animatedValue: this._animatedValue.interpolate({
+      animatedValue: this.animatedValue.interpolate({
         inputRange: [0, HEADER_SCROLL_DISTANCE],
         outputRange: [HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT],
         extrapolate: 'clamp'
@@ -90,8 +91,6 @@ class LaunchScreen extends Component {
   }
 
   render () {
-    const { fetching } = this.props
-    const { payload } = this.state
     const scrollY = Animated.add(
       this.state.scrollY,
       Platform.OS === 'ios' ? HEADER_MAX_HEIGHT : 0
@@ -104,7 +103,7 @@ class LaunchScreen extends Component {
     return (
       <View style={styles.mainContainer}>
         <Animated.Image source={Images.background} style={[styles.backgroundImage, {top: (!this.state.params ? 0 : this.state.params.animatedValue), opacity: imageOpacity, height: HEADER_MAX_HEIGHT}]} resizeMode='cover' />
-        <Animated.ScrollView style={[styles.container, {top: HEADER_MIN_HEIGHT}]}
+        <Animated.ScrollView style={[styles.container, {top: HEADER_MIN_HEIGHT, marginBottom: HEADER_MIN_HEIGHT}]}
           scrollEventThrottle={16}
           onScroll={Animated.event(
             [{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }],

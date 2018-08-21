@@ -24,18 +24,6 @@ export default class Category extends React.PureComponent {
     )
   }
 
-  /* ***********************************************************
-  * STEP 3
-  * Consider the configurations we've set below.  Customize them
-  * to your liking!  Each with some friendly advice.
-  *************************************************************/
-  // Render a header?
-  renderHeader = () =>
-    <View>
-      <Text style={[styles.label, styles.sectionHeader]}> {this.props.data.category.name} </Text>
-      <Button onPress={() => this.props.navigation.navigate('ProductsScreen', {data: this.props.data})} title='View More' />
-    </View>
-
   // Show this when data is empty
   renderEmpty = () =>
     <Text style={styles.label}> - Nothing to See Here - </Text>
@@ -43,7 +31,7 @@ export default class Category extends React.PureComponent {
   // The default function if no Key is provided is index
   // an identifiable key is important if you plan on
   // item reordering.  Otherwise index is fine
-  keyExtractor = (item, index) => index
+  keyExtractor = (item, index) => item.id.toString()
 
   // How many items should be kept im memory as we scroll?
   oneScreensWorth = 5
@@ -65,13 +53,14 @@ export default class Category extends React.PureComponent {
   render () {
     return (
       <View style={styles.container}>
+        <Text style={[styles.label, styles.sectionHeader]}> {this.props.data.category.name} </Text>
+        <Button onPress={() => this.props.navigation.navigate('ProductsScreen', {data: this.props.data})} title='View More' />
         <FlatList
           contentContainerStyle={styles.listContent}
           data={!this.props.data ? null : this.props.data.products}
           renderItem={this.renderRow}
           keyExtractor={this.keyExtractor}
           initialNumToRender={this.oneScreensWorth}
-          ListHeaderComponent={this.renderHeader}
           ListEmptyComponent={this.renderEmpty}
           horizontal
         />
