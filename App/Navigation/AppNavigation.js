@@ -5,7 +5,7 @@ import BrowseScreen from '../Containers/BrowseScreen'
 import SearchScreen from '../Containers/SearchScreen'
 import ProductsScreen from '../Containers/ProductsScreen'
 import LaunchScreen from '../Containers/LaunchScreen'
-import CustomIcon from '../Components/CustomIcon'
+
 import styles from './Styles/NavigationStyles'
 
 import { Colors } from '../Themes'
@@ -17,7 +17,6 @@ const HomeStack = StackNavigator({
   navigationOptions: {
     headerStyle: styles.header,
     headerTitleStyle: styles.headerTitle
-    // headerBackImage: <CustomIcon name='leftarrow' style={styles.headerIcon} />
   }
 })
 

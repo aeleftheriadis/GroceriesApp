@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, KeyboardAvoidingView } from 'react-native'
+import { TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { Colors } from '../Themes'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
@@ -12,13 +12,19 @@ import Products from './Products'
 import styles from './Styles/ProductsScreenStyle'
 
 class ProductsScreen extends Component {
-  static navigationOptions = ({ navigation }) => ({
+  static navigationOptions = ({ navigation, screenProps }) => ({
     title: typeof navigation.state.params !== typeof undefined ? navigation.state.params.data.category.name : null,
     tabBarLabel: 'Home',
     tabBarIcon: ({ tintColor }) => (
       <CustomIcon name='shop' color={tintColor} />
     ),
-    headerRight: <CustomIcon name='basket' color={Colors.green} style={styles.headerIcon} />
+    headerRight: <CustomIcon name='basket' color={Colors.green} style={styles.headerIcon} />,
+
+    headerLeft:
+  <TouchableOpacity onPress={() => { navigation.goBack(null) }}>
+
+    <CustomIcon name='leftarrow' color={Colors.green} style={styles.headerIcon} />
+  </TouchableOpacity>
   });
   render () {
     return (

@@ -79,8 +79,6 @@ class LaunchScreen extends Component {
   }
 
   componentWillReceiveProps (newProps) {
-    // this.forceUpdate()
-    // Did the login attempt complete?
     if (this.isAttempting && !newProps.fetching) {
       console.tron.log(newProps.payload)
       this.setState({payload: newProps.payload})
