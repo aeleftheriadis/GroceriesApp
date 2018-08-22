@@ -18,7 +18,7 @@ class ProductsScreen extends Component {
     tabBarIcon: ({ tintColor }) => (
       <CustomIcon name='shop' color={tintColor} />
     ),
-    headerRight: <CustomIcon name='basket' color={Colors.green} />,
+    headerRight: <CustomIcon name='basket' color={Colors.green} style={styles.headerIcon} />
   });
   render () {
     return (

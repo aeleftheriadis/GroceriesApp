@@ -1,10 +1,14 @@
 const type = {
   base: 'Lato-Regular',
   bold: 'Lato-Bold',
-  emphasis: 'Lato-Italic'
+  semibold: 'Lato-Semibold',
+  medium: 'Lato-Medium',
+  emphasis: 'Lato-Italic',
+  black: 'Lato-Black'
 }
 
 const size = {
+  header: 16,
   h1: 38,
   h2: 34,
   h3: 30,
@@ -19,6 +23,10 @@ const size = {
 }
 
 const style = {
+  header: {
+    fontFamily: type.regular,
+    fontSize: size.header
+  },
   h1: {
     fontFamily: type.base,
     fontSize: size.h1

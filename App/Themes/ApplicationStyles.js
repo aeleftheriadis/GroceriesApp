@@ -23,6 +23,24 @@ const ApplicationStyles = {
       paddingTop: Metrics.baseMargin,
       backgroundColor: Colors.background
     },
+    header: {
+      backgroundColor: Colors.white
+    },
+    headerTitle: {
+      ...Fonts.style.header,
+      alignSelf: 'center',
+      textAlign: 'center',
+      color: Colors.darkGrey,
+      width: '90%'
+    },
+    headerRow: {
+      flex: 1,
+      flexDirection: 'row',
+      justifyContent: 'space-between'
+    },
+    headerIcon: {
+      margin: Metrics.doubleBaseMargin
+    },
     section: {
       margin: Metrics.section,
       padding: Metrics.baseMargin

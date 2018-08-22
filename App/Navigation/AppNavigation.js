@@ -8,16 +8,16 @@ import LaunchScreen from '../Containers/LaunchScreen'
 
 import styles from './Styles/NavigationStyles'
 
-import { createIconSetFromIcoMoon } from 'react-native-vector-icons'
-import icoMoonConfig from '../Lib/selection.json'
-
-const Icon = createIconSetFromIcoMoon(icoMoonConfig)
-
-import { Metrics, Colors } from '../Themes'
+import { Colors } from '../Themes'
 
 const HomeStack = StackNavigator({
   LaunchScreen: { screen: LaunchScreen },
   ProductsScreen: { screen: ProductsScreen }
+}, {
+  navigationOptions: {
+    headerStyle: styles.header,
+    headerTitleStyle: styles.headerTitle
+  }
 })
 
 // Manifest of possible screens

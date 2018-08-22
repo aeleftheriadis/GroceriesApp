@@ -23,16 +23,20 @@ class LaunchScreen extends Component {
         <CustomIcon name='shop' color={tintColor} />
       ),
       headerLeft: <View />,
-      headerRight: <CustomIcon name='basket' color={Colors.green} />,
+      headerRight: <CustomIcon name='basket' color={Colors.green} style={styles.headerIcon} />,
       headerStyle: styles.transparentHeader,
-      headerTitle: <Picker
-        selectedValue={params.selectedSupplier}
-        style={{ height: 50, width: 150 }}
-        onValueChange={(itemValue, itemIndex) => params.handlePickerChange(itemValue)}
-        mode='dropdown'>
-        <Picker.Item label='Tesco' value='tesco' />
-        <Picker.Item label='Waitrose' value='waitrose' />
-      </Picker>
+      headerTitle: <View style={{justifyContent: 'center', width: '50%'}}>
+        <Picker
+          selectedValue={params.selectedSupplier}
+          style={styles.pickerContainer}
+          itemStyle={styles.picker}
+          onValueChange={(itemValue, itemIndex) => params.handlePickerChange(itemValue)}
+          mode='dropdown'>
+          <Picker.Item label='Tesco' value='tesco' />
+          <Picker.Item label='Waitrose' value='waitrose' />
+        </Picker>
+        <CustomIcon name='downarrow' color={Colors.white} style={{right: 4, top: 20, position: 'absolute'}} size={16} />
+      </View>
     }
   };
   isAttempting = false

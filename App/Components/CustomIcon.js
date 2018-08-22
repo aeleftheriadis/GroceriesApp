@@ -12,17 +12,18 @@ export default class CustomIcon extends Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
     size: PropTypes.number,
-    color: PropTypes.string.isRequired
+    color: PropTypes.string.isRequired,
+    style: PropTypes.any
   }
 
   // Defaults for props
   static defaultProps = {
-    size: 25
+    size: 22
   }
 
   render () {
     return (
-      <Icon name={this.props.name} size={this.props.size} color={this.props.color} />
+      <Icon name={this.props.name} size={this.props.size} color={this.props.color} style={[this.props.style]} />
     )
   }
 }
