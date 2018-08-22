@@ -27,7 +27,7 @@ const ApplicationStyles = {
       backgroundColor: Colors.white
     },
     headerTitle: {
-      ...Fonts.style.header,
+      ...Fonts.style.h1,
       alignSelf: 'center',
       textAlign: 'center',
       color: Colors.darkGrey,
@@ -41,16 +41,14 @@ const ApplicationStyles = {
     headerIcon: {
       margin: Metrics.doubleBaseMargin
     },
+    sectionTitle: {
+      ...Fonts.style.h2,
+      color: Colors.green,
+      textAlign: 'left'
+    },
     section: {
       margin: Metrics.section,
       padding: Metrics.baseMargin
-    },
-    sectionText: {
-      ...Fonts.style.normal,
-      paddingVertical: Metrics.doubleBaseMargin,
-      color: Colors.snow,
-      marginVertical: Metrics.smallMargin,
-      textAlign: 'center'
     },
     subtitle: {
       color: Colors.snow,

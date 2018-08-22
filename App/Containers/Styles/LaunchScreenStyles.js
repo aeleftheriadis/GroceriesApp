@@ -15,15 +15,28 @@ export default StyleSheet.create({
     borderBottomWidth: 0,
     borderWidth: 0,
     elevation: 0,
-    shadowOpacity: 0
+    shadowOpacity: 0,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   },
   pickerContainer: {
-    height: 50,
-    width: 130,
-    justifyContent: 'center'
+    top: Metrics.smallMargin,
+    width: 95
+  },
+  customDropDown: {
+    right: 4,
+    top: 20,
+    position: 'absolute'
   },
   picker: {
-    ...Fonts.style.header,
+    height: 50,
+    width: 120,
+    backgroundColor: Colors.transparent,
+    justifyContent: 'center'
+  },
+  pickerItem: {
+    ...Fonts.style.h1,
     alignSelf: 'center',
     textAlign: 'center',
     color: Colors.darkGrey

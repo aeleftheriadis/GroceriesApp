@@ -54,7 +54,7 @@ export default class Category extends React.PureComponent {
     return (
       <View style={styles.container}>
         <View style={styles.headerRow}>
-          <Text style={[styles.headerLabel, styles.sectionHeader]}> {this.props.data.category.name} </Text>
+          <Text style={styles.sectionHeader}> {this.props.data.category.name} </Text>
           <Button onPress={() => this.props.navigation.navigate('ProductsScreen', {data: this.props.data})} title='View More' />
         </View>
         <FlatList

@@ -19,7 +19,7 @@ export default StyleSheet.create({
     textAlign: 'center',
     marginBottom: Metrics.smallMargin
   },
-  headerLabel: {
+  sectionHeader: {
     color: Colors.green
   },
   label: {

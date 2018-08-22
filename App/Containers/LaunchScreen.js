@@ -10,7 +10,7 @@ import Category from './Category'
 import styles from './Styles/LaunchScreenStyles'
 
 const HEADER_MAX_HEIGHT = 300
-const HEADER_MIN_HEIGHT = Platform.OS === 'ios' ? 60 : 73
+const HEADER_MIN_HEIGHT = 60
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT
 
 class LaunchScreen extends Component {
@@ -22,21 +22,23 @@ class LaunchScreen extends Component {
       tabBarIcon: ({ tintColor }) => (
         <CustomIcon name='shop' color={tintColor} />
       ),
-      headerLeft: <View />,
-      headerRight: <CustomIcon name='basket' color={Colors.green} style={styles.headerIcon} />,
-      headerStyle: styles.transparentHeader,
-      headerTitle: <View style={{justifyContent: 'center', width: '50%'}}>
-        <Picker
-          selectedValue={params.selectedSupplier}
-          style={styles.pickerContainer}
-          itemStyle={styles.picker}
-          onValueChange={(itemValue, itemIndex) => params.handlePickerChange(itemValue)}
-          mode='dropdown'>
-          <Picker.Item label='Tesco' value='tesco' />
-          <Picker.Item label='Waitrose' value='waitrose' />
-        </Picker>
-        <CustomIcon name='downarrow' color={Colors.white} style={{right: 4, top: 20, position: 'absolute'}} size={16} />
-      </View>
+      header:
+  <View style={styles.transparentHeader}>
+    <View style={{width: 68}} />
+    <View style={styles.pickerContainer}>
+      <Picker
+        selectedValue={params.selectedSupplier}
+        style={styles.picker}
+        itemStyle={styles.pickerItem}
+        onValueChange={(itemValue, itemIndex) => params.handlePickerChange(itemValue)}
+        mode='dropdown'>
+        <Picker.Item label='Tesco' value='tesco' />
+        <Picker.Item label='Waitrose' value='waitrose' />
+      </Picker>
+      <CustomIcon name='downarrow' color={Colors.white} style={styles.customDropDown} size={12} />
+    </View>
+    <CustomIcon name='basket' color={Colors.green} style={[styles.headerIcon]} />
+  </View>
     }
   };
   isAttempting = false
@@ -86,7 +88,7 @@ class LaunchScreen extends Component {
   }
   renderScrollViewContent () {
     return (
-      <View style={{paddingTop: Platform.OS !== 'ios' ? HEADER_MAX_HEIGHT : 0}}>
+      <View style={{paddingTop: Platform.OS !== 'ios' ? HEADER_MAX_HEIGHT - 60 : 0}}>
         {this.state.payload.map((u, i) => (
           <Category key={i} data={u} navigation={this.props.navigation} />
         ))}

@@ -1,63 +1,37 @@
 const type = {
   base: 'Lato-Regular',
-  bold: 'Lato-Bold',
   semibold: 'Lato-Semibold',
   medium: 'Lato-Medium',
-  emphasis: 'Lato-Italic',
   black: 'Lato-Black'
 }
 
 const size = {
-  header: 16,
-  h1: 38,
-  h2: 34,
-  h3: 30,
-  h4: 26,
-  h5: 20,
-  h6: 19,
-  input: 18,
-  regular: 17,
-  medium: 14,
-  small: 12,
-  tiny: 8.5
+  h1: 16,
+  regular: 12,
+  small: 11,
+  h4: 10
 }
 
 const style = {
-  header: {
-    fontFamily: type.regular,
-    fontSize: size.header
-  },
   h1: {
-    fontFamily: type.base,
+    fontFamily: type.semibold,
     fontSize: size.h1
   },
   h2: {
-    fontWeight: 'bold',
-    fontSize: size.h2
+    fontFamily: type.black,
+    fontSize: size.small
   },
   h3: {
-    fontFamily: type.emphasis,
-    fontSize: size.h3
-  },
-  h4: {
     fontFamily: type.base,
-    fontSize: size.h4
-  },
-  h5: {
-    fontFamily: type.base,
-    fontSize: size.h5
-  },
-  h6: {
-    fontFamily: type.emphasis,
-    fontSize: size.h6
+    fontSize: size.small
   },
   normal: {
     fontFamily: type.base,
     fontSize: size.regular
   },
-  description: {
-    fontFamily: type.base,
-    fontSize: size.medium
+  h4: {
+    fontFamily: type.medium,
+    fontSize: size.h4
   }
 }
 
