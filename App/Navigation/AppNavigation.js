@@ -48,13 +48,27 @@ const PrimaryNav = TabNavigator({
     showIcon: true,
     showLabel: true,
     activeTintColor: Colors.green,
-    inactiveTintColor: Colors.grey
-    // style: {
-    //   backgroundColor: 'white',
-    //   borderTopColor: 'white',
-    //   borderTopWidth: 1,
-    //   height: Metrics.screenHeight * 0.08
-    // },
+    inactiveTintColor: Colors.grey,
+    labelStyle: styles.tabBarLabel,
+    iconStyle: styles.tabBarLabel,
+    style: styles.tabBar
+    // activeTintColor?: string;
+    // allowFontScaling?: boolean;
+    // activeBackgroundColor?: string;
+    // inactiveTintColor?: string;
+    // inactiveBackgroundColor?: string;
+    // showLabel?: boolean;
+    // style?: StyleProp<ViewStyle>;
+    // labelStyle?: StyleProp<TextStyle>;
+    // iconStyle?: StyleProp<ViewStyle>;
+    // // Top
+    // showIcon?: boolean;
+    // upperCaseLabel?: boolean;
+    // pressColor?: string;
+    // pressOpacity?: number;
+    // scrollEnabled?: boolean;
+    // tabStyle?: StyleProp<ViewStyle>;
+    // indicatorStyle?: StyleProp<ViewStyle>;
     // tabStyle: {
     //   width: Metrics.screenWidth * 0.33333333333333333333333333333333333333333,
     //   height: Metrics.screenWidth * 0.08
@@ -68,10 +82,10 @@ const PrimaryNav = TabNavigator({
     // }
   },
   initialRouteName: 'LaunchScreen',
-  abBarComponent: TabBarBottom,
+  tabBarComponent: TabBarBottom,
   tabBarPosition: 'bottom',
   animationEnabled: true,
-  swipeEnabled: true
+  swipeEnabled: false
 }
 
 // {

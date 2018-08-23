@@ -33,8 +33,7 @@ const ApplicationStyles = {
       color: Colors.darkGrey,
       width: '90%'
     },
-    headerRow: {
-      flex: 1,
+    listRow: {
       flexDirection: 'row',
       justifyContent: 'space-between'
     },

@@ -14,6 +14,7 @@ const colors = {
   darkGrey: '#767676',
   imageBackground: '#777676',
   textBorder: '#D4D4D4',
+  lightGreyTransparent: 'rgba(249, 249, 249, 0.9)',
   // TODO Remove after that line
   steel: '#CCCCCC',
   fire: '#e73536',

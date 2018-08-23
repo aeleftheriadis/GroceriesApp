@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Text, View, Platform, Animated, Picker } from 'react-native'
-import { Images, Colors } from '../Themes'
+import { Images, Colors, Metrics } from '../Themes'
 import { connect } from 'react-redux'
 import ProductsActions from '../Redux/ProductsRedux'
 import CustomIcon from '../Components/CustomIcon'
@@ -10,8 +10,7 @@ import Category from './Category'
 import styles from './Styles/LaunchScreenStyles'
 
 const HEADER_MAX_HEIGHT = 300
-const HEADER_MIN_HEIGHT = 60
-const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT
+const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - Metrics.navBarHeight
 
 class LaunchScreen extends Component {
   static navigationOptions = ({navigation}) => {
@@ -59,7 +58,7 @@ class LaunchScreen extends Component {
     this.props.navigation.setParams({
       animatedValue: this.animatedValue.interpolate({
         inputRange: [0, HEADER_SCROLL_DISTANCE],
-        outputRange: [HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT],
+        outputRange: [HEADER_MAX_HEIGHT, Metrics.navBarHeight],
         extrapolate: 'clamp'
       }),
       handlePickerChange: this.pickerChange,
@@ -86,7 +85,7 @@ class LaunchScreen extends Component {
   }
   renderScrollViewContent () {
     return (
-      <View style={{paddingTop: Platform.OS !== 'ios' ? HEADER_MAX_HEIGHT - 60 : 0}}>
+      <View style={{paddingTop: Platform.OS !== 'ios' ? HEADER_MAX_HEIGHT - Metrics.navBarHeight : 0}}>
         {this.state.payload.map((u, i) => (
           <Category key={i} data={u} navigation={this.props.navigation} />
         ))}
@@ -107,7 +106,7 @@ class LaunchScreen extends Component {
     return (
       <View style={styles.mainContainer}>
         <Animated.Image source={Images.background} style={[styles.backgroundImage, {top: (!this.state.params ? 0 : this.state.params.animatedValue), opacity: imageOpacity, height: HEADER_MAX_HEIGHT}]} resizeMode='cover' />
-        <Animated.ScrollView style={[styles.container, {top: HEADER_MIN_HEIGHT, marginBottom: HEADER_MIN_HEIGHT}]}
+        <Animated.ScrollView style={[styles.container, {top: Metrics.navBarHeight, marginBottom: Metrics.navBarHeight}]}
           scrollEventThrottle={16}
           onScroll={Animated.event(
             [{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }],
