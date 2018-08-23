@@ -46,6 +46,38 @@ const ApplicationStyles = {
     headerIcon: {
       margin: Metrics.doubleBaseMargin
     },
+    progressContainer: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      paddingVertical: 20
+    },
+    label: {
+      ...Fonts.style.normal,
+      alignSelf: 'flex-start',
+      color: Colors.grey,
+      textAlign: 'left'
+    },
+    boldLabel: {
+      ...Fonts.style.normal,
+      alignSelf: 'flex-start',
+      color: Colors.black,
+      textAlign: 'left',
+      marginBottom: Metrics.smallMargin
+    },
+    productContainer: {
+      width: 120,
+      backgroundColor: Colors.white,
+      margin: 0,
+      padding: 0,
+      borderWidth: 0,
+      paddingRight: Metrics.baseMargin,
+      elevation: 0
+    },
+    productImage: {
+      width: 80,
+      height: 80
+    },
     sectionTitle: {
       ...Fonts.style.h2,
       color: Colors.green,

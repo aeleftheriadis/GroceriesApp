@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, Platform, Animated, Picker } from 'react-native'
+import { Text, View, Platform, Animated, Picker, ActivityIndicator } from 'react-native'
 import { Images, Colors, Metrics } from '../Themes'
 import { connect } from 'react-redux'
 import ProductsActions from '../Redux/ProductsRedux'
@@ -23,7 +23,7 @@ class LaunchScreen extends Component {
       ),
       header:
   <View style={styles.transparentHeader}>
-    <View style={{width: 68}} />
+    <CustomIcon name='basket' color={Colors.green} style={[styles.headerIcon, {opacity: 0}]} />
     <View style={styles.pickerContainer}>
       <Picker
         selectedValue={params.selectedSupplier}
@@ -84,11 +84,16 @@ class LaunchScreen extends Component {
     }
   }
   renderScrollViewContent () {
+    const { fetching } = this.props
     return (
       <View style={{paddingTop: Platform.OS !== 'ios' ? HEADER_MAX_HEIGHT - Metrics.navBarHeight : 0}}>
-        {this.state.payload.map((u, i) => (
-          <Category key={i} data={u} navigation={this.props.navigation} />
-        ))}
+        {fetching
+          ? <View style={styles.progressContainer}>
+            <ActivityIndicator size='large' color={Colors.darkGrey} />
+          </View>
+          : this.state.payload.map((u, i) => (
+            <Category key={i} data={u} navigation={this.props.navigation} />
+          ))}
       </View>
     )
   }
@@ -114,38 +119,6 @@ class LaunchScreen extends Component {
           )}
         >
           {this.renderScrollViewContent()}
-          {/* {fetching
-          ? <View style={styles.progressContainer}>
-            <Progress.CircleSnail color={['#1b4182']} />
-          </View> : null}
-        { payload.map((u, i) => {
-          return (
-            <AnnouncementCard
-              key={i}
-              announcement={u}
-              onPress={() => this.onPress(u)}
-              chars={80}
-            />
-          )
-        })
-        }
-          </View> */}
-          {/* <View style={styles.centered}>
-            <Image source={Images.launch} style={styles.logo} />
-
-            <Button
-              title='Go to Details'
-              onPress={() => this.props.navigation.navigate('ProductsScreen')}
-            />
-          </View>
-
-          <View style={styles.section} >
-            <Image source={Images.ready} />
-            <Text style={styles.sectionText}>
-              This probably isn't what your app is going to look like. Unless your designer handed you this screen and, in that case, congrats! You're ready to ship. For everyone else, this is where you'll see a live preview of your fully functioning app using Ignite.
-            </Text>
-          </View> */}
-
         </Animated.ScrollView>
       </View>
     )

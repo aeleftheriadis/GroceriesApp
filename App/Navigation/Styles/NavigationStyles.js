@@ -4,7 +4,7 @@ import { Colors, Fonts, ApplicationStyles } from '../../Themes/'
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
   header: {
-    backgroundColor: Colors.backgroundColor
+    backgroundColor: Colors.white
   },
   tabBarLabel: {
     ...Fonts.style.h4

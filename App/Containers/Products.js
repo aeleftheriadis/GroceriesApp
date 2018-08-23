@@ -1,7 +1,8 @@
 import React from 'react'
-import { View, Text, FlatList, Image } from 'react-native'
+import { View, Text, FlatList } from 'react-native'
+import { Divider } from 'react-native-elements'
 import { connect } from 'react-redux'
-
+import Product from '../Components/Product'
 // More info here: https://facebook.github.io/react-native/docs/flatlist.html
 
 // Styles
@@ -19,9 +20,12 @@ class Products extends React.PureComponent {
   renderRow ({item}) {
     return (
       <View style={styles.row}>
-        <Text style={styles.boldLabel}>{item.name}</Text>
-        <Text style={styles.label}>{item.price}</Text>
-        <Image source={{uri: item.primary_image_url}} style={{width: 50, height: 50}} />
+        <Product
+          imageUrl={item.primary_image_url}
+          imageSize={120}
+          price={item.price}
+          name={item.name}
+        />
       </View>
     )
   }
@@ -33,14 +37,11 @@ class Products extends React.PureComponent {
   *************************************************************/
   // Render a header?
   renderHeader = () =>
-    <Text style={[styles.label, styles.sectionHeader]}> - Header - </Text>
+    <Divider style={styles.divider} />
 
   // Show this when data is empty
   renderEmpty = () =>
-    <Text style={styles.label}> - Nothing to See Here - </Text>
-
-  renderSeparator = () =>
-    <Text style={styles.label}> - ~~~~~ - </Text>
+    <Text style={[styles.label, styles.centerText]}>Nothing to See Here</Text>
 
   // The default function if no Key is provided is index
   // an identifiable key is important if you plan on
@@ -76,7 +77,9 @@ class Products extends React.PureComponent {
           initialNumToRender={this.oneScreensWorth}
           ListHeaderComponent={this.renderHeader}
           ListEmptyComponent={this.renderEmpty}
-          ItemSeparatorComponent={this.renderSeparator}
+          automaticallyAdjustContentInsets
+          removeClippedSubviews
+          enableEmptySections
         />
       </View>
     )

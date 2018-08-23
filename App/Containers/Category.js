@@ -1,9 +1,9 @@
 import React from 'react'
-import { View, Text, FlatList, Image } from 'react-native'
-import { Card, Button, Divider } from 'react-native-elements'
+import { View, Text, FlatList } from 'react-native'
+import { Button, Divider } from 'react-native-elements'
 import CustomIcon from '../Components/CustomIcon'
 import { Colors } from '../Themes'
-import Icon from 'react-native-vector-icons/FontAwesome'
+import Product from '../Components/Product'
 // More info here: https://facebook.github.io/react-native/docs/flatlist.html
 
 // Styles
@@ -20,21 +20,12 @@ export default class Category extends React.PureComponent {
   *************************************************************/
   renderRow ({item}) {
     return (
-
-      <Card
-        title={null}
-        image={{ uri: item.primary_image_url }}
-        containerStyle={styles.productContainer}
-        imageStyle={styles.productImage}
-        wrapperStyle={styles.zeroPadding}
-      >
-        <Text style={styles.boldLabel}>
-          {`${'\u00A3'}${item.price}`}
-        </Text>
-        <Text style={styles.label}>
-          {item.name}
-        </Text>
-      </Card>
+      <Product
+        imageUrl={item.primary_image_url}
+        imageSize={80}
+        price={item.price}
+        name={item.name}
+      />
     )
   }
 
@@ -67,19 +58,20 @@ export default class Category extends React.PureComponent {
   render () {
     return (
       <View style={styles.container}>
-
-        <View style={[styles.listRow, {}]}>
-          <Text style={styles.sectionHeader}> {this.props.data.category.name} </Text>
-          <Button
-            onPress={() => this.props.navigation.navigate('ProductsScreen', {data: this.props.data})}
-            iconRight
-            icon={<CustomIcon name='rightarrow' color={Colors.darkGrey} size={11} style={styles.categoryButton} />}
-            titleStyle={styles.headerButton}
-            clear
-            // containerStyle={{ alignSelf: 'flex-end' }}
-            title='View More'
-          />
-        </View>
+        {!this.props.data
+          ? null
+          : <View style={[styles.listRow, {}]}>
+            <Text style={styles.sectionHeader}> {this.props.data.category.name} </Text>
+            <Button
+              onPress={() => this.props.navigation.navigate('ProductsScreen', {data: this.props.data})}
+              iconRight
+              icon={<CustomIcon name='rightarrow' color={Colors.darkGrey} size={11} style={styles.categoryButton} />}
+              titleStyle={styles.headerButton}
+              clear
+              title='View More'
+            />
+          </View>
+        }
         <Divider style={styles.divider} />
         <FlatList
           contentContainerStyle={styles.listContent}

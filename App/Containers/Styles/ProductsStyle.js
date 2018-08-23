@@ -5,30 +5,22 @@ export default StyleSheet.create({
   ...ApplicationStyles.screen,
   container: {
     flex: 1,
-    backgroundColor: Colors.background
+    backgroundColor: Colors.white
   },
   row: {
     flex: 1,
-    backgroundColor: Colors.fire,
+    backgroundColor: Colors.transparent,
     marginVertical: Metrics.smallMargin,
     justifyContent: 'center',
-    margin: 10,
-    padding: 5,
-    paddingVertical: 10,
-    borderRadius: Metrics.smallMargin
-  },
-  boldLabel: {
-    fontWeight: 'bold',
-    alignSelf: 'center',
-    color: Colors.snow,
-    textAlign: 'center',
-    marginBottom: Metrics.smallMargin
-  },
-  label: {
-    textAlign: 'center',
-    color: Colors.snow
+    padding: Metrics.smallMargin,
+    paddingVertical: Metrics.baseMargin,
+    paddingHorizontal: Metrics.doubleBaseMargin
   },
   listContent: {
-    marginTop: Metrics.baseMargin
+    marginTop: 0
+  },
+  divider: {
+    backgroundColor: Colors.textBorder,
+    marginBottom: Metrics.baseMargin
   }
 })
