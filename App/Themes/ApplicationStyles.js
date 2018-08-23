@@ -18,6 +18,9 @@ const ApplicationStyles = {
       height: '100%',
       alignSelf: 'center'
     },
+    centerText: {
+      textAlign: 'center'
+    },
     container: {
       flex: 1,
       paddingTop: Metrics.baseMargin,
@@ -36,6 +39,9 @@ const ApplicationStyles = {
     listRow: {
       flexDirection: 'row',
       justifyContent: 'space-between'
+    },
+    zeroPadding: {
+      padding: 0
     },
     headerIcon: {
       margin: Metrics.doubleBaseMargin

@@ -6,7 +6,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.white,
-    padding: Metrics.baseMargin
+    padding: Metrics.doubleBaseMargin
   },
   row: {
     flex: 1,
@@ -26,10 +26,35 @@ export default StyleSheet.create({
     color: Colors.green
   },
   headerButton: {
-    ...Fonts.style.h2,
+    ...Fonts.style.h3,
     alignSelf: 'flex-end',
     textAlign: 'left',
-    color: Colors.darkGrey
+    color: Colors.darkGrey,
+    padding: 0
+  },
+  productContainer: {
+    width: 120,
+    backgroundColor: Colors.white,
+    margin: 0,
+    padding: 0,
+    borderWidth: 0,
+    paddingRight: Metrics.baseMargin,
+    elevation: 0
+  },
+  categoryButton: {
+    backgroundColor: Colors.transparent,
+    color: Colors.darkGrey,
+    top: 1,
+    paddingLeft: 5
+  },
+  productImage: {
+    width: 80,
+    height: 80,
+    alignSelf: 'center'
+  },
+  divider: {
+    backgroundColor: Colors.border,
+    marginVertical: Metrics.baseMargin
   },
   label: {
     ...Fonts.style.normal,
