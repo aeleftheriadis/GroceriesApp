@@ -40,14 +40,5 @@ export default StyleSheet.create({
     alignSelf: 'center',
     textAlign: 'center',
     color: Colors.darkGrey
-  },
-  logo: {
-    marginTop: Metrics.doubleSection,
-    height: Metrics.images.logo,
-    width: Metrics.images.logo,
-    resizeMode: 'contain'
-  },
-  centered: {
-    alignItems: 'center'
   }
 })

@@ -26,9 +26,6 @@ const ApplicationStyles = {
       paddingTop: Metrics.baseMargin,
       backgroundColor: Colors.background
     },
-    header: {
-      backgroundColor: Colors.white
-    },
     headerTitle: {
       ...Fonts.style.h1,
       alignSelf: 'center',
@@ -50,7 +47,7 @@ const ApplicationStyles = {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      paddingVertical: 20
+      paddingVertical: Metrics.doubleBaseMargin
     },
     label: {
       ...Fonts.style.normal,
@@ -77,26 +74,6 @@ const ApplicationStyles = {
     productImage: {
       width: 80,
       height: 80
-    },
-    sectionTitle: {
-      ...Fonts.style.h2,
-      color: Colors.green,
-      textAlign: 'left'
-    },
-    section: {
-      margin: Metrics.section,
-      padding: Metrics.baseMargin
-    },
-    subtitle: {
-      color: Colors.snow,
-      padding: Metrics.smallMargin,
-      marginBottom: Metrics.smallMargin,
-      marginHorizontal: Metrics.smallMargin
-    },
-    titleText: {
-      ...Fonts.style.h2,
-      fontSize: 14,
-      color: Colors.text
     }
   },
   darkLabelContainer: {
@@ -109,24 +86,6 @@ const ApplicationStyles = {
   darkLabel: {
     fontFamily: Fonts.type.bold,
     color: Colors.snow
-  },
-  groupContainer: {
-    margin: Metrics.smallMargin,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center'
-  },
-  sectionTitle: {
-    ...Fonts.style.h4,
-    color: Colors.coal,
-    backgroundColor: Colors.ricePaper,
-    padding: Metrics.smallMargin,
-    marginTop: Metrics.smallMargin,
-    marginHorizontal: Metrics.baseMargin,
-    borderWidth: 1,
-    borderColor: Colors.ember,
-    alignItems: 'center',
-    textAlign: 'center'
   }
 }
 

@@ -13,13 +13,6 @@ export default StyleSheet.create({
     marginVertical: Metrics.smallMargin,
     justifyContent: 'center'
   },
-  boldLabel: {
-    ...Fonts.style.normal,
-    alignSelf: 'flex-start',
-    color: Colors.black,
-    textAlign: 'left',
-    marginBottom: Metrics.smallMargin
-  },
   sectionHeader: {
     ...Fonts.style.h2,
     textAlign: 'left',
@@ -32,7 +25,6 @@ export default StyleSheet.create({
     color: Colors.darkGrey,
     padding: 0
   },
-
   categoryButton: {
     backgroundColor: Colors.transparent,
     color: Colors.darkGrey,
