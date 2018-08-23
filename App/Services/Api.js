@@ -3,7 +3,6 @@ import apisauce from 'apisauce'
 
 // our "constructor"
 const create = (
-  // baseURL = 'https://api.github.com/'
   baseURL = 'https://api.development.convibo.co.uk/api/v1/'
 ) => {
   // ------
@@ -39,9 +38,6 @@ const create = (
   // way at this level.
   //
   const getProducts = (supplier) => api.get('products', {supplier: supplier, collection: 'true'})
-  const getRoot = () => api.get('')
-  const getRate = () => api.get('rate_limit')
-  const getUser = (username) => api.get('search/users', {q: username})
   // ------
   // STEP 3
   // ------
@@ -56,10 +52,7 @@ const create = (
   //
   return {
     // a list of the API functions from step 2
-    getProducts,
-    getRoot,
-    getRate,
-    getUser
+    getProducts
   }
 }
 

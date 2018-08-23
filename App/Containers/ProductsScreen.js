@@ -19,10 +19,8 @@ class ProductsScreen extends Component {
       <CustomIcon name='shop' color={tintColor} />
     ),
     headerRight: <CustomIcon name='basket' color={Colors.green} style={styles.headerIcon} />,
-
     headerLeft:
   <TouchableOpacity onPress={() => { navigation.goBack(null) }}>
-
     <CustomIcon name='leftarrow' color={Colors.green} style={styles.headerIcon} />
   </TouchableOpacity>
   });

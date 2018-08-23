@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styles from './Styles/CustomIconStyle'
 
 import { createIconSetFromIcoMoon } from 'react-native-vector-icons'
 import icoMoonConfig from '../Lib/selection.json'

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, Platform, Animated, Picker, ActivityIndicator } from 'react-native'
+import { View, Platform, Animated, Picker, ActivityIndicator } from 'react-native'
 import { Images, Colors, Metrics } from '../Themes'
 import { connect } from 'react-redux'
 import ProductsActions from '../Redux/ProductsRedux'

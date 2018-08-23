@@ -1,10 +1,5 @@
 import { AppRegistry } from 'react-native'
-import { getStorybookUI, configure } from '@storybook/react-native'
-
-// import stories
-configure(() => {
-  require('../App/Components/Stories')
-}, module)
+import { getStorybookUI } from '@storybook/react-native'
 
 // This assumes that storybook is running on the same host as your RN packager,
 // to set manually use, e.g. host: 'localhost' option
